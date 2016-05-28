@@ -1,0 +1,4 @@
+This repo is to demonstrate the features of TypeScript. A short tutorials to start working on TypeScript.
+
+
+npm install -g typescript
