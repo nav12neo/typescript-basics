@@ -24,9 +24,31 @@ let myRatings :[number,string];
 myRatings = [9.2,"3 Idiots"];
 
 //Enum
+enum Sports {'Cricket' = 1,'Table Tennis','Vollyball','Basketball'};
+let cricketIndex = Sports.Cricket;
+let secondGame = Sports[2];
+
+//Any - when you are not sure about its type.
+let notSure:any = false;
+notSure = 10;
+notSure = "Really I am not sure!!";
+
+// Void - mostly seen as return type of a function.
+function alertMessage() :void {
+    alert("Its an alert. Move fast !!!")
+}
+
+// Type assertions - when user know about type of a variable more than TS.
+let newVal:any = "New String";
+let newValLength:number = (<string>newVal).length;
+let newValLength2:number = (newVal as string).length;
+
 
 export function printVars () {
+    var moviesSummary = (likeMovies)? ` My favorite movies are ${favMovies}. I gave rating of ${myRatings[0]} to ${myRatings[1]}.`:``
+    alertMessage();
+    console.log(newValLength +" -- "+newValLength2);
     return `I am ${name}, ${age} years old. I weight ${weight} kgs.` +
-        `  My favorite numbers are ${favNumbers}. Do I like movies: ${likeMovies}.` +
-        ` My favorite movies are ${favMovies}. I gave rating of ${myRatings[0]} to ${myRatings[1]}.`
+        `  My favorite numbers are ${favNumbers}.` + moviesSummary+
+        ` I play ${Sports[3]} and ${secondGame}, but cricket is always ${cricketIndex}st choice for me`;
 }
