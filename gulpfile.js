@@ -17,14 +17,14 @@ gulp.task('default', ['copyHtml'], function () {
     return browserify({
         basedir: '.',
         debug: true,
-        entries: ['src/main.ts'],
+        entries: ['src/scripts/main.ts'],
         cache: {},
         packageCache: {}
     })
         .plugin(tsify)
         .transform("babelify")
         .bundle()
-        .pipe(source('bundle.js'))
+        .pipe(source('scripts/main.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(sourcemaps.write('./'))
