@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var connect = require('gulp-connect');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var tsify = require('tsify');
@@ -30,3 +31,21 @@ gulp.task('default', ['copyHtml'], function () {
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist'));
 });
+
+gulp.task('connect', function() {
+  connect.server({
+    root: 'dist',
+    livereload: true
+  });
+});
+
+gulp.task('html', function () {
+  gulp.src('./dist/*.html')
+    .pipe(connect.reload());
+});
+
+gulp.task('watch', function () {
+  gulp.watch(['./dist/*.html'], ['html']);
+});
+
+gulp.task('default', ['connect', 'watch']);
