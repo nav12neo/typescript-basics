@@ -19,7 +19,5 @@ let myRatings;
 myRatings = [9.2, "3 Idiots"];
 //Enum
 export function printVars() {
-    return `I am ${name}, ${age} years old. I weight ${weight} kgs.` +
-        `  My favorite numbers are ${favNumbers}. Do I like movies: ${likeMovies}.` +
-        ` My favorite movies are ${favMovies}. I gave rating of ${myRatings[0]} to ${myRatings[1]}.`;
+    return `I am ${name}, ${age} years old. I weight ${weight} kgs. My favorite numbers are ${favNumbers}. Do I like movies: ${likeMovies}. My favorite movies are ${favMovies}. I gave rating of ${myRatings[0]} to ${myRatings[1]}.`;
 }
