@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+var sass = require('gulp-sass');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var tsify = require('tsify');
@@ -14,22 +15,14 @@ gulp.task('copyHtml', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['copyHtml'], function () {
-    return browserify({
-        basedir: '.',
-        debug: true,
-        entries: ['src/scripts/main.ts'],
-        cache: {},
-        packageCache: {}
-    })
-        .plugin(tsify)
-        .transform("babelify")
-        .bundle()
-        .pipe(source('scripts/main.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist'));
+gulp.task('sass', function () {
+  return gulp.src('src/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('dist/css'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('src/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('connect', function() {
@@ -48,4 +41,4 @@ gulp.task('watch', function () {
   gulp.watch(['./dist/*.html'], ['html']);
 });
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['copyHtml','sass','connect', 'watch']);

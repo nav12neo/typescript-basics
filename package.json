@@ -28,6 +28,7 @@
     "gulp-debug": "^2.0.1",
     "gulp-inject": "^1.2.0",
     "gulp-rimraf": "^0.1.1",
+    "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^1.4.4",
     "gulp-typescript": "^2.5.0",
