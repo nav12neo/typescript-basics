@@ -36,10 +36,12 @@
 ehthumbs.db
 Thumbs.db
 
-
 # project build files
 #####################
-/dist
-/node_modules
-/.idea
-/.vsstudio
+out/
+node_modules/
+.idea
+.vsstudio
+bower_components/
+.sass_cache
+build/
