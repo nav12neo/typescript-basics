@@ -47,7 +47,6 @@ let newValLength2:number = (newVal as string).length;
 export function printVars () {
     var moviesSummary = (likeMovies)? ` My favorite movies are ${favMovies}. I gave rating of ${myRatings[0]} to ${myRatings[1]}.`:``
     alertMessage();
-    console.log(newValLength +" -- "+newValLength2);
     return `I am ${name}, ${age} years old. I weight ${weight} kgs.` +
         `  My favorite numbers are ${favNumbers}.` + moviesSummary+
         ` I play ${Sports[3]} and ${secondGame}, but cricket is always ${cricketIndex}st choice for me`;
