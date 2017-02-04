@@ -40,7 +40,6 @@ Thumbs.db
 #####################
 out/
 node_modules/
-.idea
 .vsstudio
 bower_components/
 .sass_cache

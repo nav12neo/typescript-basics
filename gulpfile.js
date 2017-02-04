@@ -10,13 +10,14 @@ var tsify = require("tsify");
 var gutil = require("gulp-util");
 
 var paths = {
-    pages: ['src/*.html'],
+    pages: ['src/**/*.html'],
     sass: ['src/sass/**/*.scss'],
     out: 'out',
     outhtml: 'out/*.html',
     css: 'out/css',
     outjsloc: "out/scripts",
-    ts: ['src/scripts/main.ts']
+    ts: ['src/scripts/main.ts'],
+    tsfiles: ['src/scripts/**/*.ts']
 };
 gulp.task('copyHtml', function() {
     return gulp.src(paths.pages)
@@ -55,8 +56,10 @@ gulp.task("typescript", ["copyHtml"], function(cb) {
 });
 
 gulp.task('watch', function() {
+    gulp.watch(paths.pages, ['copyHtml'])
     gulp.watch(paths.outhtml, ['html']);
     gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.tsfiles, ['typescript']);
 });
 
 gulp.task('build', ['typescript', 'copyHtml', 'sass', 'connect', 'watch']);

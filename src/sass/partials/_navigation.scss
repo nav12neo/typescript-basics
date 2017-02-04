@@ -1,3 +1,19 @@
-.navigation {
-    display: inline-block;
+nav {
+    &.navigation {
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                display: inline-block;
+                padding: 0.5em 1em;
+                border-bottom: 5px solid $border-primary;
+                &.active {
+                    border-color: $border-primary-selected;
+                }
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }

@@ -6,4 +6,4 @@ function showHello (divName:string,name:string){
     ele.innerHTML = sayHello(name) + "<br/><br/>" + printVars();
 }
 
-showHello("hello","Neo!");
+showHello("hello","Neo");

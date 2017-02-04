@@ -3,14 +3,71 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>TypeScript Basics</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div>
-        <p id="hello">Loading ...</p>
+    <div class="conatiner">
+        <nav class="navigation">
+            <ul>
+                <li class="active"><a href="/">Basic Types</a></li>
+                <li><a href="/pages/variable-declarations.html">Variable Declarations</a></li>
+            </ul>
+        </nav>
+        <div id="hello">Loading ...</div>
+
+        <h2>Variables i have used for displaying above summary.</h2>
+        <div class="code-preview">
+            <code>
+                //String
+let name:string = "Naveen Kumar";
+
+//Number
+let age:number = 29;
+let weight:number = 72.2;
+
+// Boolean
+let likeMovies:boolean = true;
+
+//Array
+let favNumbers:number[] = [3,9,18];
+let favMovies:Array<string> = ["3 Idiots","Avengers","X-Men"];
+
+// Tuple - where type of fixed number of array is known,but need not to be same;
+//Declare a tuple like this
+let myRatings :[number,string];
+//Initialize it
+myRatings = [9.2,"3 Idiots"];
+
+//Enum
+enum Sports {'Cricket' = 1,'Table Tennis','Vollyball','Basketball'};
+let cricketIndex = Sports.Cricket;
+let secondGame = Sports[2];
+
+//Any - when you are not sure about its type.
+let notSure:any = false;
+notSure = 10;
+notSure = "Really I am not sure!!";
+
+// Void - mostly seen as return type of a function.
+function alertMessage() :void {
+    alert("Its an alert. Move fast !!!")
+}
+
+// Type assertions - when user know about type of a variable more than TS.
+let newVal:any = "New String";
+let newValLength:number = (<string>newVal).length;
+let newValLength2:number = (newVal as string).length;
+            </code>
+        </div>
     </div>
+    <footer>
+        this content is buid for learning purpose only.
+        <br> content is heavily driven from <a target="_blank" href="https://www.typescriptlang.org">typescript.com</a>
+        <br> can share your reviews on <a href="mailto:naveen.aitian@gmail.com">naveen.aitian@gmail.com</a>
+        <br> can contrinute as well if you really believe in sharing knowledge.
+    </footer>
 
     <script src="scripts/app.js"></script>
 </body>
