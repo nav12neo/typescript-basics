@@ -1,65 +1,44 @@
 var gulp = require('gulp');
-var connect = require('gulp-connect');
-var sass = require('gulp-sass');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var tsify = require('tsify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
-var browserify = require("browserify");
-var source = require('vinyl-source-stream');
-var watchify = require("watchify");
-var tsify = require("tsify");
-var gutil = require("gulp-util");
-
+var sass = require('gulp-sass');
 var paths = {
     pages: ['src/**/*.html'],
     sass: ['src/sass/**/*.scss'],
-    out: 'out',
-    outhtml: 'out/*.html',
-    css: 'out/css',
-    outjsloc: "out/scripts",
-    ts: ['src/scripts/main.ts'],
-    tsfiles: ['src/scripts/**/*.ts']
+    css: 'dist/css',
 };
-gulp.task('copyHtml', function() {
+
+gulp.task('copy-html', function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest(paths.out));
+        .pipe(gulp.dest('dist'));
 });
 
+sass.compiler = require('node-sass');
 gulp.task('sass', function() {
     return gulp.src(paths.sass)
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(paths.css));
 });
-
-gulp.task('connect', function() {
-    connect.server({
-        root: paths.out,
-        livereload: true
-    });
-});
-gulp.task('html', function() {
-    gulp.src(paths.outhtml)
-        .pipe(connect.reload());
-});
-
-gulp.task("typescript", ["copyHtml"], function(cb) {
+gulp.task('default', gulp.series(gulp.parallel('copy-html','sass'), function () {
     return browserify({
-            basedir: '.',
-            debug: true,
-            entries: paths.ts,
-            cache: {},
-            packageCache: {}
-        })
+        basedir: '.',
+        debug: true,
+        entries: ['src/scripts/main.ts'],
+        cache: {},
+        packageCache: {}
+    })
         .plugin(tsify)
+        .transform('babelify', {
+            presets: ['es2015'],
+            extensions: ['.ts']
+        })
         .bundle()
-        .pipe(source('app.js'))
-        .pipe(gulp.dest(paths.outjsloc));
-});
-
-gulp.task('watch', function() {
-    gulp.watch(paths.pages, ['copyHtml'])
-    gulp.watch(paths.outhtml, ['html']);
-    gulp.watch(paths.sass, ['sass']);
-    gulp.watch(paths.tsfiles, ['typescript']);
-});
-
-gulp.task('build', ['typescript', 'copyHtml', 'sass', 'connect', 'watch']);
+        .pipe(source('scripts/bundle.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dist'));
+}));

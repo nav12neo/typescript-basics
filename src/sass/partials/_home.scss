@@ -16,8 +16,11 @@ a {
 .code-preview {
     padding: 10px;
     margin: 15px 0px;
+    font-family: $font-family-code;
     border: 3px solid $border-primary-container;
-    border-radius: 29px 0px;
+    border-radius: 29px 0;
+    background: $dark_background;
+    color: $dark_color;
 }
 
 footer {

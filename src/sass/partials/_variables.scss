@@ -1,9 +1,12 @@
-$font-family-main:Courier New,
-Courier,
-Verdana sans-serif;
+$font-family-main:Verdana, sans-serif;
+$font-family-code:Courier New, Courier;
 $primary-color: #333;
 $hyperlink-color:#3380FF;
 $border-primary:#4F6DD5;
 $border-primary-selected:#F43E0D;
 $code-color:#1CD821;
 $border-primary-container:#57574B;
+
+//dark theme
+$dark_background : #000;
+$dark_color:#FFF;
